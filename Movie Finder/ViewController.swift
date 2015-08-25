@@ -11,6 +11,10 @@ import Foundation
 
 class ViewController: UIViewController {
     
+    var ans = "1"
+    
+    @IBOutlet weak var actor: UITextField!
+    
     var urlContentArray = [""]
     
     var deply = false
@@ -30,35 +34,41 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func searchPressed(sender: AnyObject) {
+        getMovieData()
+        
+        println("THISISISIISIS ISISISIISIS SPARTATATATA")
+        
+    }
     
     
     
     
-    func getMovieData() {
+    func getMovieData() -> (String){
         
-        var keyword = keywords.text
+        var keyword = "Tom Cruise"
         
-        var keywordArray = keyword.componentsSeparatedByString(",")
-
+        print("Something should be happening")
         
-        var array = [""]
-        //print(self.finalArray)
-        
-        for i in self.finalArray {
+            let keyword1 = keyword.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: nil, range: nil)
             
-            var url2 = NSURL(string: "https://www.wikipedia.org"+i)
+            var url2 = NSURL(string: "http://www.imdb.com/search/name?name="+keyword1)
             
-            //println(url2 )
+            println(url2)
             
             if url2 != nil {
                 
-                //print("PEACE")
                 
-                var task2 = NSURLSession.sharedSession().dataTaskWithURL(url2!, completionHandler: { (data2, response2, error2) -> Void in
+                
+                print("PEACE")
+                
+                var task = NSURLSession.sharedSession().dataTaskWithURL(url2!, completionHandler: { (data2, response2, error2) -> Void in
                     
-                    print()
+                    println("We've got to here")
                     
                     if error2 == nil {
+                        
+                        println("Hello")
                         
                         var movieContent = NSString(data: data2, encoding: NSUTF8StringEncoding) as NSString!
                         
@@ -66,8 +76,22 @@ class ViewController: UIViewController {
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             
+                            var keywordArray = movieContent.componentsSeparatedByString("href=\"/name/")
                             
-
+                            print(keywordArray[1])
+                            
+                            var final = keywordArray[1] as! String
+                            
+                            var finalArray = final.componentsSeparatedByString("/")
+                            
+                            println(finalArray)
+                            
+                            println(finalArray[0])
+                            
+                            ans = finalArray[0]
+                            
+                            
+                            /*
                         
                         
                         for key in keywordArray {
@@ -81,7 +105,7 @@ class ViewController: UIViewController {
                             }
                             else {
                                 println("Movie doesn't fit")
-                            } }
+                            } } */
                             
                         }
                        
@@ -90,14 +114,11 @@ class ViewController: UIViewController {
                     
                 })
                 
-                if self.deply == true {
-                    task2.resume() }
-                
-                
+                task.resume()
             }
             
             
-        }
+        
         //print(array)
     
     
@@ -117,7 +138,7 @@ class ViewController: UIViewController {
 
 
 
-
+/*
 
 
 @IBAction func searchPressed(sender: UIButton) {
@@ -210,13 +231,13 @@ class ViewController: UIViewController {
 }
         
             
-            
+     */
     
     
-    }
+    
 
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
-}
 
+}
