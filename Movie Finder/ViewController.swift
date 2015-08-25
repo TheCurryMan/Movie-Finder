@@ -11,9 +11,27 @@ import Foundation
 
 class ViewController: UIViewController {
     
-    var ans = "1"
+    func displayAlert(title: String, message: String){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: {(action) -> Void in
+            
+            
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+
+
+    @IBOutlet weak var plot: UITextField!
     
     @IBOutlet weak var actor: UITextField!
+    
+    @IBOutlet weak var reldate1: UITextField!
+    
+    @IBOutlet weak var reldate2: UITextField!
     
     var urlContentArray = [""]
     
@@ -21,7 +39,7 @@ class ViewController: UIViewController {
     
     var finalArray = [" "]
     
-    @IBOutlet var keywords: UITextField!
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,38 +55,39 @@ class ViewController: UIViewController {
     @IBAction func searchPressed(sender: AnyObject) {
         getMovieData()
         
-        println("THISISISIISIS ISISISIISIS SPARTATATATA")
         
     }
     
     
     
     
-    func getMovieData() -> (String){
+    func getMovieData() {
         
-        var keyword = "Tom Cruise"
+        var ans = "Hello"
         
-        print("Something should be happening")
+        var keyword = self.actor.text
+        
+        //print("Something should be happening")
         
             let keyword1 = keyword.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: nil, range: nil)
             
             var url2 = NSURL(string: "http://www.imdb.com/search/name?name="+keyword1)
             
-            println(url2)
+            //println(url2)
             
             if url2 != nil {
                 
                 
                 
-                print("PEACE")
+                //print("PEACE")
                 
                 var task = NSURLSession.sharedSession().dataTaskWithURL(url2!, completionHandler: { (data2, response2, error2) -> Void in
                     
-                    println("We've got to here")
+                    //println("We've got to here")
                     
                     if error2 == nil {
                         
-                        println("Hello")
+                        //println("Hello")
                         
                         var movieContent = NSString(data: data2, encoding: NSUTF8StringEncoding) as NSString!
                         
@@ -78,34 +97,23 @@ class ViewController: UIViewController {
                             
                             var keywordArray = movieContent.componentsSeparatedByString("href=\"/name/")
                             
-                            print(keywordArray[1])
+                            //print(keywordArray[1])
                             
                             var final = keywordArray[1] as! String
                             
                             var finalArray = final.componentsSeparatedByString("/")
                             
-                            println(finalArray)
+                            //println(finalArray)
                             
-                            println(finalArray[0])
-                            
-                            ans = finalArray[0]
+                            //println(finalArray[0])
                             
                             
-                            /*
-                        
-                        
-                        for key in keywordArray {
                             
-                            print(key)
+                            ans = finalArray[0] as String
                             
-                            if movieContent.lowercaseString.rangeOfString(key) != nil {
-                                println("exists")
-                                println("\n \n \n \n \n \n er got the movie, or atleast one")
-                                println(i)
-                            }
-                            else {
-                                println("Movie doesn't fit")
-                            } } */
+                            self.getMovieName(ans)
+                            
+                            
                             
                         }
                        
@@ -121,6 +129,115 @@ class ViewController: UIViewController {
         
         //print(array)
     
+    
+    }
+    
+    func getMovieName(name : String) {
+    
+    
+        println(name)
+        
+        performFinalSearch(name)
+    
+    }
+    
+    
+    func performFinalSearch(actor: String) {
+        
+        var plotVal = self.plot.text
+        
+        var reld1 = self.reldate1.text
+        
+        var reld2 = self.reldate2.text
+        
+    
+        var url2 = NSURL(string: "http://www.imdb.com/search/title?plot=" + plotVal+"&release_date=" + reld1 + "," + reld2 + "&role=" + actor)
+        
+        //println(url2)
+        
+        if url2 != nil {
+            
+            
+            
+            //print("PEACE")
+            
+            var task = NSURLSession.sharedSession().dataTaskWithURL(url2!, completionHandler: { (data2, response2, error2) -> Void in
+                
+                //println("We've got to here")
+                
+                if error2 == nil {
+                    
+                    //println("Hello")
+                    
+                    var movieContent = NSString(data: data2, encoding: NSUTF8StringEncoding) as NSString!
+                    
+                    //print(movieContent)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        var keywordArray = movieContent.componentsSeparatedByString("even detailed")
+                        
+                        var keywordArray2 = movieContent.componentsSeparatedByString("odd detailed")
+                        
+                        //print(keywordArray[1])
+                        
+                        var final = keywordArray[1] as! String
+                        
+                        //var final2 = keywordArray2[1] as! String
+                        
+                        var finalArray = final.componentsSeparatedByString("title=\"")
+                        
+                        //var finalArray2 = final2.componentsSeparatedByString("title=\"")
+                        
+                        //println(finalArray)
+                        
+                        //println(finalArray[0])
+                        
+                        
+                        
+                        var nameSec = finalArray[1] as String
+                        
+                        //var nameSec2 = finalArray2[1] as String
+                        
+                        var nameFinal = nameSec.componentsSeparatedByString("\">")
+                        
+                        //var nameFinal2 = nameSec2.componentsSeparatedByString("\">")
+                        
+                        var nameDone = nameFinal[0]
+                        
+                        //var nameDone2 = nameFinal2[0]
+                        
+                        println("Hello")
+                        
+                        self.displayAlert("Your movie is...", message: nameDone)
+                        
+                        
+                        /*var alert = UIAlertController(title: "Your movie is...", message: nameDone, preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: {(action) -> Void in
+                            
+                        
+                            
+                        }))
+                        
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                        
+                        */
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+            })
+            
+            task.resume()
+        }
+        
+
+        
     
     }
     
@@ -142,9 +259,9 @@ class ViewController: UIViewController {
 
 
 @IBAction func searchPressed(sender: UIButton) {
-        
+    
         var keyword = keywords.text
-        
+    
         var keywordArray = keyword.componentsSeparatedByString(",")
         
         
