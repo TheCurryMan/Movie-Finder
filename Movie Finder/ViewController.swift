@@ -39,11 +39,15 @@ class ViewController: UIViewController {
     
     var finalArray = [" "]
     
+    var listOfMovies = [" "]
    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,11 +99,11 @@ class ViewController: UIViewController {
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             
-                            var keywordArray = movieContent.componentsSeparatedByString("href=\"/name/")
+                            var keywordArray3 = movieContent.componentsSeparatedByString("href=\"/name/")
                             
                             //print(keywordArray[1])
                             
-                            var final = keywordArray[1] as! String
+                            var final = keywordArray3[1] as! String
                             
                             var finalArray = final.componentsSeparatedByString("/")
                             
@@ -138,6 +142,12 @@ class ViewController: UIViewController {
         println(name)
         
         performFinalSearch(name)
+        
+        
+        
+        
+        
+
     
     }
     
@@ -175,55 +185,73 @@ class ViewController: UIViewController {
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         
+                        
                         var keywordArray = movieContent.componentsSeparatedByString("even detailed")
                         
                         var keywordArray2 = movieContent.componentsSeparatedByString("odd detailed")
                         
-                        //print(keywordArray[1])
+                        self.listOfMovies = [" "]
+                        self.listOfMovies.removeAtIndex(0)
                         
-                        var final = keywordArray[1] as! String
+                        for (index, value) in enumerate(keywordArray) {
+                            
+                            println("Hello")
                         
-                        //var final2 = keywordArray2[1] as! String
-                        
-                        var finalArray = final.componentsSeparatedByString("title=\"")
-                        
-                        //var finalArray2 = final2.componentsSeparatedByString("title=\"")
-                        
-                        //println(finalArray)
-                        
-                        //println(finalArray[0])
-                        
-                        
-                        
-                        var nameSec = finalArray[1] as String
-                        
-                        //var nameSec2 = finalArray2[1] as String
-                        
-                        var nameFinal = nameSec.componentsSeparatedByString("\">")
-                        
-                        //var nameFinal2 = nameSec2.componentsSeparatedByString("\">")
-                        
-                        var nameDone = nameFinal[0]
-                        
-                        //var nameDone2 = nameFinal2[0]
-                        
-                        println("Hello")
-                        
-                        self.displayAlert("Your movie is...", message: nameDone)
-                        
-                        
-                        /*var alert = UIAlertController(title: "Your movie is...", message: nameDone, preferredStyle: UIAlertControllerStyle.Alert)
-                        
-                        alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: {(action) -> Void in
+                            if index % 2 != 0 {
+                                
+                                if index <= keywordArray.count {
+                                
+                                var final = keywordArray[index] as! String
+                                
+                                var finalArray = final.componentsSeparatedByString("title=\"")
+                                
+                                
+                                var nameSec = finalArray[1] as String
+                                
+                                
+                                var nameFinal = nameSec.componentsSeparatedByString("\">")
+                                
+                                
+                                var nameDone = nameFinal[0]
+                                    
+                               
+                                
+                                    self.listOfMovies.append(nameDone) }
+                                
+                                
+                                if index <= keywordArray2.count {
+                                
+                                var final2 = keywordArray2[index] as! String
+                                
+                                var finalArray2 = final2.componentsSeparatedByString("title=\"")
+                                
+                                
+                                var nameSec2 = finalArray2[1] as String
+                                
+                                var nameFinal2 = nameSec2.componentsSeparatedByString("\">")
+                                
+                                var nameDone2 = nameFinal2[0]
+                                
+                                self.listOfMovies.append(nameDone2)
+
+                                }
+                                
+                                println(self.listOfMovies)
+                                
+                                
+                                
+                            }
+                            
+                            println("Namaste")
+                            
                             
                         
-                            
-                        }))
+                        }
                         
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        self.seguePerform()
+                        //self.displayAlert("Your movie is...", message: asd)
                         
                         
-                        */
                         
                         
                     }
@@ -241,13 +269,28 @@ class ViewController: UIViewController {
     
     }
     
+    func seguePerform() {
     
+        println(self.listOfMovies)
+        
+        self.performSegueWithIdentifier("movies", sender: nil)
+        
+
+    
+    }
 
 
 
 
-
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "movies" {
+        
+            let vc = segue.destinationViewController as!  DisplayViewController
+            
+            vc.movieList = self.listOfMovies
+        
+        }
+    }
 
 
 
