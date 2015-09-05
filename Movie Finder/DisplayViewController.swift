@@ -10,17 +10,33 @@ import Foundation
 import UIKit
 
 
-class DisplayViewController : UIViewController,UITableViewDataSource {
+class CustomTableViewCell : UITableViewCell {
+
+    @IBOutlet var movieImage: UIImageView!
+
+    @IBOutlet var movieName: UILabel!
+    
+
+   
+}
+
+
+class DisplayViewController : UIViewController,UITableViewDataSource, UITableViewDelegate {
 
 
     @IBOutlet var tableView: UITableView!
     
-    var movieList = []
+    var movieList = [] as [String]
+    
+    var imageURLs = [] as [String]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        var nib = UINib(nibName: "CustomMovieCell", bundle: nil)
+        
+        tableView.registerNib(nib, forCellReuseIdentifier: "customCell")
+        
         
         println(movieList)
     }
@@ -32,11 +48,19 @@ class DisplayViewController : UIViewController,UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        var cell:CustomTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("customCell") as! CustomTableViewCell
+        cell.movieName.text = movieList[indexPath.row]
         
-        cell.textLabel!.text = movieList[indexPath.row] as! String
+        let url = NSURL(string: imageURLs[indexPath.row])
+        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+        cell.movieImage.image = UIImage(data: data!)
         
         return cell
+    }
+    
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
     }
 
 

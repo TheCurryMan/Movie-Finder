@@ -40,6 +40,8 @@ class ViewController: UIViewController {
     var finalArray = [" "]
     
     var listOfMovies = [" "]
+    
+    var urlOfImages = [" "]
    
 
     override func viewDidLoad() {
@@ -193,6 +195,9 @@ class ViewController: UIViewController {
                         self.listOfMovies = [" "]
                         self.listOfMovies.removeAtIndex(0)
                         
+                        self.urlOfImages = [" "]
+                        self.urlOfImages.removeAtIndex(0)
+                        
                         for (index, value) in enumerate(keywordArray) {
                             
                             println("Hello")
@@ -205,7 +210,6 @@ class ViewController: UIViewController {
                                 
                                 var finalArray = final.componentsSeparatedByString("title=\"")
                                 
-                                
                                 var nameSec = finalArray[1] as String
                                 
                                 
@@ -214,9 +218,19 @@ class ViewController: UIViewController {
                                 
                                 var nameDone = nameFinal[0]
                                     
-                               
+                                var imgArr = final.componentsSeparatedByString("img src=\"")
+                                    
+                                var imgAr = imgArr[1].componentsSeparatedByString("\" ")
+
+                                var iurl = imgAr[0] as String
                                 
-                                    self.listOfMovies.append(nameDone) }
+                                    self.listOfMovies.append(nameDone)
+                                    
+                                    self.urlOfImages.append(iurl)
+                                
+                                
+                                
+                                }
                                 
                                 
                                 if index <= keywordArray2.count {
@@ -231,8 +245,17 @@ class ViewController: UIViewController {
                                 var nameFinal2 = nameSec2.componentsSeparatedByString("\">")
                                 
                                 var nameDone2 = nameFinal2[0]
+                                    
+                                    
+                                    var imgArr = final2.componentsSeparatedByString("img src=\"")
+                                    
+                                    var imgAr = imgArr[1].componentsSeparatedByString("\" ")
+                                    
+                                    var iurl = imgAr[0] as String
                                 
                                 self.listOfMovies.append(nameDone2)
+                                    
+                                self.urlOfImages.append(iurl)
 
                                 }
                                 
@@ -288,6 +311,8 @@ class ViewController: UIViewController {
             let vc = segue.destinationViewController as!  DisplayViewController
             
             vc.movieList = self.listOfMovies
+            
+            vc.imageURLs = self.urlOfImages
         
         }
     }

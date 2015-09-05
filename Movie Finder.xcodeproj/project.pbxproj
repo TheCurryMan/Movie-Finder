@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E10F0DAA1B97A3330046C3A3 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F0DA91B97A3330046C3A3 /* DisplayViewController.swift */; };
+		E10F0DAC1B9B865B0046C3A3 /* CustomMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10F0DAB1B9B865B0046C3A3 /* CustomMovieCell.xib */; };
 		E1E0D0F41B11C9D0000DFEC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0D0F31B11C9D0000DFEC6 /* AppDelegate.swift */; };
 		E1E0D0F61B11C9D0000DFEC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0D0F51B11C9D0000DFEC6 /* ViewController.swift */; };
 		E1E0D0F91B11C9D0000DFEC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E0D0F71B11C9D0000DFEC6 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		E10F0DA91B97A3330046C3A3 /* DisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
+		E10F0DAB1B9B865B0046C3A3 /* CustomMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMovieCell.xib; sourceTree = "<group>"; };
 		E1E0D0EE1B11C9D0000DFEC6 /* Movie Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E0D0F21B11C9D0000DFEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E0D0F31B11C9D0000DFEC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				E1E0D0F71B11C9D0000DFEC6 /* Main.storyboard */,
 				E1E0D0FA1B11C9D0000DFEC6 /* Images.xcassets */,
 				E1E0D0FC1B11C9D0000DFEC6 /* LaunchScreen.xib */,
+				E10F0DAB1B9B865B0046C3A3 /* CustomMovieCell.xib */,
 				E1E0D1131B11CA16000DFEC6 /* search.png */,
 				E1E0D0F11B11C9D0000DFEC6 /* Supporting Files */,
 			);
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1E0D0F91B11C9D0000DFEC6 /* Main.storyboard in Resources */,
+				E10F0DAC1B9B865B0046C3A3 /* CustomMovieCell.xib in Resources */,
 				E1E0D0FE1B11C9D0000DFEC6 /* LaunchScreen.xib in Resources */,
 				E1E0D0FB1B11C9D0000DFEC6 /* Images.xcassets in Resources */,
 				E1E0D1141B11CA16000DFEC6 /* search.png in Resources */,
