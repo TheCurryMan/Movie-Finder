@@ -68,12 +68,52 @@
                         <outlet property="plot" destination="Z41-kj-lRt" id="pja-II-sGy"/>
                         <outlet property="reldate1" destination="eNJ-lg-6fm" id="eKj-EF-8pp"/>
                         <outlet property="reldate2" destination="7wd-GU-IkC" id="oIM-NL-0IV"/>
-                        <segue destination="l3e-fK-OQB" kind="modal" identifier="movies" id="sdW-KV-Bi3"/>
+                        <segue destination="3E8-ew-u1f" kind="modal" identifier="loading" id="Fpw-vr-HWp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="327"/>
+            <point key="canvasLocation" x="-75" y="323"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="nx1-8x-iwa">
+            <objects>
+                <viewController id="3E8-ew-u1f" customClass="LoadingViewController" customModule="Movie_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AwF-rb-dww">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give us a moment..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M7V-mz-pYi">
+                                <rect key="frame" x="83" y="527" width="154" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Finder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jX9-pt-Y1X">
+                                <rect key="frame" x="110" y="59" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uKk-aD-q25">
+                                <rect key="frame" x="102" y="336" width="116" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="l3e-fK-OQB" kind="modal" identifier="movies" id="SP8-Jx-2sf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DkP-6W-v65" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="317" y="323"/>
         </scene>
         <!--Display View Controller-->
         <scene sceneID="cXY-eE-osL">
@@ -109,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mp3-B6-vPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="427" y="370"/>
+            <point key="canvasLocation" x="706" y="327"/>
         </scene>
     </scenes>
     <resources>
