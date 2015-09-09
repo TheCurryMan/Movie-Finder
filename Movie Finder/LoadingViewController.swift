@@ -156,7 +156,7 @@ class LoadingViewController: UIViewController {
         var reld2 = self.reldate2
         
         
-        var url2 = NSURL(string: "http://www.imdb.com/search/title?plot=" + plotVal+"&release_date=" + reld1 + "," + reld2 + "&sort=year,desc&role=" + actor)
+        var url2 = NSURL(string: "http://www.imdb.com/search/title?plot=" + plotVal+"&release_date=" + reld1 + "," + reld2 + "&sort=year,desc&title_type=feature&role=" + actor)
         
         println(url2)
         
