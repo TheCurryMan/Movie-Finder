@@ -21,15 +21,37 @@ class ReleaseDateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBOutlet var reldate1: UITextField!
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBOutlet var reldate2: UITextField!
+    
+    @IBAction func next(sender: AnyObject) {
+        
+        performSegueWithIdentifier("toactor", sender: nil)
+        
+        
     }
-    */
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toactor" {
+            
+            var vc = segue.destinationViewController as! ActorViewController
+            
+            
+            var d1 = self.reldate1.text
+            var d2 = self.reldate2.text
+            
+            var array = [d1,d2]
+            
+            vc.data = array
+            
+        }
+
+}
 
 }

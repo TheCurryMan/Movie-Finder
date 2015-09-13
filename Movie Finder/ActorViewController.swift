@@ -21,6 +21,7 @@ class ActorViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    var data = []
 
     /*
     // MARK: - Navigation
