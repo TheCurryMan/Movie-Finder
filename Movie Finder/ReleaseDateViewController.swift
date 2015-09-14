@@ -46,7 +46,9 @@ class ReleaseDateViewController: UIViewController {
             var d1 = self.reldate1.text
             var d2 = self.reldate2.text
             
-            var array = [d1,d2]
+            var array = [d1,d2] as [String]
+            
+            print(array)
             
             vc.data = array
             

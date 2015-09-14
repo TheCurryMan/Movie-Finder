@@ -9,10 +9,14 @@
 import UIKit
 
 class ActorViewController: UIViewController {
+    
+    var data = ["", ""]
 
+    @IBOutlet weak var actor: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -21,16 +25,28 @@ class ActorViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    var data = []
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func next(sender: AnyObject) {
+        
+        performSegueWithIdentifier("todetail", sender: nil)
     }
-    */
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "todetail" {
+            
+            var vc = segue.destinationViewController as! DetailViewController
+            
+            var act = actor.text
+            
+            
+            vc.data = data
+            vc.actor = act
+            
+        }
+        
+    }
+
 
 }
