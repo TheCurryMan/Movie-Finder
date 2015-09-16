@@ -25,6 +25,7 @@ class GenreViewController: UIViewController {
     var detail = []
     var on = [""]
     var actor = ""
+    var nothing = false
     
     @IBOutlet weak var action: UISwitch!
     
@@ -46,6 +47,10 @@ class GenreViewController: UIViewController {
         performSegueWithIdentifier("tocalc", sender: nil)
     }
     
+    @IBAction func skip(sender: AnyObject) {
+        
+        performSegueWithIdentifier("tocalc", sender: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -74,10 +79,22 @@ class GenreViewController: UIViewController {
             
             var vc = segue.destinationViewController as! CalculateViewController
             
+            if nothing == true {
+            
+            vc.data = data
+            vc.actor = actor
+            vc.detail = detail
+            vc.genre = ""
+                
+            }
+            
+            else {
             vc.data = data
             vc.actor = actor
             vc.detail = detail
             vc.genre = final
+                
+            }
             
             
         }

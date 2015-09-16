@@ -22,6 +22,8 @@ class ReleaseDateViewController: UIViewController {
     }
     
     
+    var nothing = false
+    
     @IBOutlet var reldate1: UITextField!
     
 
@@ -34,11 +36,51 @@ class ReleaseDateViewController: UIViewController {
         
     }
     
+    @IBAction func skip(sender: AnyObject) {
+        
+        self.nothing = true
+        performSegueWithIdentifier("toactor", sender: nil)
+        
+        
+    }
+    
+    
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "toactor" {
+            
+            if nothing == true {
+            
+                var vc = segue.destinationViewController as! ActorViewController
+                
+                
+                var d1 = ""
+                var d2 = ""
+                
+                var array = [d1,d2] as [String]
+                
+                print(array)
+                
+                vc.data = array
+            
+            }
+            
+            else {
             
             var vc = segue.destinationViewController as! ActorViewController
             
@@ -51,6 +93,8 @@ class ReleaseDateViewController: UIViewController {
             print(array)
             
             vc.data = array
+                
+            }
             
         }
 

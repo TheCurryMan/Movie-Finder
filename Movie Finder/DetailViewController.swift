@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
     
     var data = ["", ""]
     var actor = ""
-    
+    var nothing = false
     var on = [""]
 
     @IBOutlet weak var oscar: UISwitch!
@@ -39,6 +39,11 @@ class DetailViewController: UIViewController {
         performSegueWithIdentifier("togenre", sender: nil)
     }
     
+    @IBAction func skip(sender: AnyObject) {
+        
+        nothing = true
+        performSegueWithIdentifier("togenre", sender: nil)
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -65,10 +70,21 @@ class DetailViewController: UIViewController {
                 on.append("now-playing")
             }
             
+            if nothing == true {
+            
             
             vc.data = data
             vc.actor = actor
-            vc.detail = on
+            vc.detail = [""]
+                
+            }
+            
+            else {
+                vc.data = data
+                vc.actor = actor
+                vc.detail = on
+                
+            }
             
             print(vc.data)
             print(vc.detail)

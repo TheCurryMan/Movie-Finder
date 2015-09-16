@@ -11,6 +11,8 @@ import UIKit
 class ActorViewController: UIViewController {
     
     var data = ["", ""]
+    
+    var nothing = false
 
     @IBOutlet weak var actor: UITextField!
     
@@ -30,20 +32,56 @@ class ActorViewController: UIViewController {
         
         performSegueWithIdentifier("todetail", sender: nil)
     }
+    
+    
+    @IBAction func skip(sender: AnyObject) {
+        
+        nothing = true
+        
+        performSegueWithIdentifier("todetail", sender: nil)
+
+    }
+
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "todetail" {
             
+            if nothing == true {
+            
             var vc = segue.destinationViewController as! DetailViewController
             
-            var act = actor.text
+            var act = ""
             
             
             vc.data = data
             vc.actor = act
+                
+            }
             
+            else {
+            
+                var vc = segue.destinationViewController as! DetailViewController
+                
+                var act = actor.text
+                
+                
+                vc.data = data
+                vc.actor = act
+            
+            }
         }
         
     }
