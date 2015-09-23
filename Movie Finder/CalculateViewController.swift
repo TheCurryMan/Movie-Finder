@@ -14,7 +14,7 @@ class CalculateViewController: UIViewController {
     var detail = []
     var genre = ""
     var actor = ""
-
+    var empty = false
     
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
 
@@ -61,17 +61,18 @@ class CalculateViewController: UIViewController {
     
     func getMovieData() {
         
+        
         var ans = "Hello"
         
         var keyword = actor
         
         //print("Something should be happening")
         
-        let keyword1 = keyword.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: nil, range: nil)
+        var keyword1 = keyword.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: [], range: nil)
         
         var url2 = NSURL(string: "http://www.imdb.com/search/name?name="+keyword1)
         
-        println(url2)
+        print(url2)
         
         //println(url2)
         
@@ -89,7 +90,7 @@ class CalculateViewController: UIViewController {
                     
                     //println("Hello")
                     
-                    var movieContent = NSString(data: data2, encoding: NSUTF8StringEncoding) as NSString!
+                    var movieContent = NSString(data: data2!, encoding: NSUTF8StringEncoding) as NSString!
                     
                     //print(movieContent)
                     
@@ -135,12 +136,21 @@ class CalculateViewController: UIViewController {
     func getMovieName(name : String) {
         
         
-        println(name)
+        
+        
+     print(name)
+        
+        if genre == "" && actor == "" && data.count == 0 && detail.count == 00 {
+            
+            empty = true
+        }
+        else {
+
         
         performFinalSearch(name)
         
         
-        
+        }
         
         
         
@@ -166,7 +176,7 @@ class CalculateViewController: UIViewController {
         
         var str = ""
         
-        println("Namaste")
+        print("Namaste")
         
        
         
@@ -174,11 +184,11 @@ class CalculateViewController: UIViewController {
         
             str = str + (i as! String) + ","
             
-            str = dropLast(str)
+            str.substringToIndex(str.endIndex.predecessor())
         
         }
         
-        println("Hola amigo")
+        print("Hola amigo")
        
         
         
@@ -186,7 +196,7 @@ class CalculateViewController: UIViewController {
             
             
         
-        println(url2)
+        print(url2)
         
         //println(url2)
         
@@ -196,7 +206,7 @@ class CalculateViewController: UIViewController {
             
             //print("PEACE")
             
-            var task = NSURLSession.sharedSession().dataTaskWithURL(url2!, completionHandler: { (data2, response2, error2) -> Void in
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url2!, completionHandler: { (data2, response2, error2) -> Void in
                 
                 //println("We've got to here")
                 
@@ -204,7 +214,7 @@ class CalculateViewController: UIViewController {
                     
                     //println("Hello")
                     
-                    var movieContent = NSString(data: data2, encoding: NSUTF8StringEncoding) as NSString!
+                    let movieContent = NSString(data: data2!, encoding: NSUTF8StringEncoding) as NSString!
                     
                     //print(movieContent)
                     
@@ -221,18 +231,18 @@ class CalculateViewController: UIViewController {
                         self.urlOfImages = [" "]
                         self.urlOfImages.removeAtIndex(0)
                         
-                        println(keywordArray.count)
-                        println(keywordArray2.count)
+                        print(keywordArray.count)
+                        print(keywordArray2.count)
                         
-                        for (index, value) in enumerate(keywordArray) {
+                        for (index, value) in keywordArray.enumerate() {
                             
-                            println("Hello")
+                            print("Hello")
                             
                             if index % 2 != 0 {
                                 
                                 if index <= keywordArray.count {
                                     
-                                    var final = keywordArray[index] as! String
+                                    var final = keywordArray[index] 
                                     
                                     var finalArray = final.componentsSeparatedByString("title=\"")
                                     
@@ -296,13 +306,13 @@ class CalculateViewController: UIViewController {
                                     
                                 }
                                 
-                                println(self.listOfMovies)
+                                print(self.listOfMovies)
                                 
                                 
                                 
                             }
                             
-                            println("Namaste")
+                            print("Namaste")
                             
                             
                             
@@ -331,7 +341,7 @@ class CalculateViewController: UIViewController {
     
     func seguePerform() {
         
-        println(self.listOfMovies)
+        print(self.listOfMovies)
         
         self.performSegueWithIdentifier("movies", sender: nil)
         
@@ -347,9 +357,19 @@ class CalculateViewController: UIViewController {
             
             let vc = segue.destinationViewController as!  DisplayViewController
             
+            if empty == true || self.listOfMovies.count == 0{
+                
+                vc.empty == true
+            }
+            
+            else {
             vc.movieList = self.listOfMovies
             
             vc.imageURLs = self.urlOfImages
+                
+            }
+            
+            
             
         }
     }

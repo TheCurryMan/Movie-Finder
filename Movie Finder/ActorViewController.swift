@@ -10,7 +10,7 @@ import UIKit
 
 class ActorViewController: UIViewController {
     
-    var data = ["", ""]
+    var data = [""]
     
     var nothing = false
 
@@ -41,13 +41,13 @@ class ActorViewController: UIViewController {
         performSegueWithIdentifier("todetail", sender: nil)
 
     }
-
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
-        
     }
+
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -79,7 +79,7 @@ class ActorViewController: UIViewController {
                 
                 
                 vc.data = data
-                vc.actor = act
+                vc.actor = act!
             
             }
         }

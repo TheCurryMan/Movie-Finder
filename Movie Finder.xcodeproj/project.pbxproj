@@ -90,12 +90,12 @@
 			isa = PBXGroup;
 			children = (
 				E1E0D0F31B11C9D0000DFEC6 /* AppDelegate.swift */,
-				E10F0DA91B97A3330046C3A3 /* DisplayViewController.swift */,
 				E10F0DAF1BA3A80C0046C3A3 /* ReleaseDateViewController.swift */,
 				E10F0DB11BA3AC620046C3A3 /* ActorViewController.swift */,
 				6B7C84691BA5F35200DB539A /* DetailViewController.swift */,
 				6B7C846B1BA5F36300DB539A /* GenreViewController.swift */,
 				6B7C846D1BA6681200DB539A /* CalculateViewController.swift */,
+				E10F0DA91B97A3330046C3A3 /* DisplayViewController.swift */,
 				E1E0D0F71B11C9D0000DFEC6 /* Main.storyboard */,
 				E1E0D0FA1B11C9D0000DFEC6 /* Images.xcassets */,
 				E1E0D0FC1B11C9D0000DFEC6 /* LaunchScreen.xib */,
@@ -174,6 +174,7 @@
 		E1E0D0E61B11C9D0000DFEC6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Avinash Jain";
 				TargetAttributes = {

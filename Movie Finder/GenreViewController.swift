@@ -8,7 +8,11 @@
 
 import UIKit
 
+
+
 class GenreViewController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +69,7 @@ class GenreViewController: UIViewController {
             var genswitch = [action, animation, comedy, crime, romance, scifi, thriller]
             
             
-            for (index, val) in enumerate(genswitch) {
+            for (index, val) in genswitch.enumerate() {
             
                 if val.on == true {
                     

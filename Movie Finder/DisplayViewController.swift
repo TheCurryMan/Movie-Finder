@@ -30,6 +30,8 @@ class DisplayViewController : UIViewController,UITableViewDataSource, UITableVie
     
     var imageURLs = [] as [String]
     
+    var empty = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,22 +40,40 @@ class DisplayViewController : UIViewController,UITableViewDataSource, UITableVie
         tableView.registerNib(nib, forCellReuseIdentifier: "customCell")
         
         
-        println(movieList)
+        print(movieList)
     }
     
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieList.count
+        
+        if empty == true {
+            
+            return 1
+        }
+        
+        else {
+            return movieList.count
+            
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:CustomTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("customCell") as! CustomTableViewCell
-        cell.movieName.text = movieList[indexPath.row]
         
+        if empty == true {
+        
+            cell.movieName.text = "No movies found"
+        }
+        
+        else {
+        
+        cell.movieName.text = movieList[indexPath.row]
         let url = NSURL(string: imageURLs[indexPath.row])
         let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
         cell.movieImage.image = UIImage(data: data!)
+        
+        }
         
         return cell
     }
@@ -66,7 +86,7 @@ class DisplayViewController : UIViewController,UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        println("You selected cell #\(indexPath.row)!")
+        print("You selected cell #\(indexPath.row)!")
     }
 
 

@@ -46,11 +46,9 @@ class ReleaseDateViewController: UIViewController {
     
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
-        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -85,10 +83,10 @@ class ReleaseDateViewController: UIViewController {
             var vc = segue.destinationViewController as! ActorViewController
             
             
-            var d1 = self.reldate1.text
-            var d2 = self.reldate2.text
+            let d1 = self.reldate1.text!
+            let d2 = self.reldate2.text!
             
-            var array = [d1,d2] as [String]
+            let array = [d1,d2] as [String]
             
             print(array)
             
