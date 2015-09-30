@@ -25,6 +25,18 @@ class GenreViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func displayAlert(title: String, message: String) {
+        
+        let alert = UIAlertView()
+        alert.title = title
+        alert.message = message
+        alert.addButtonWithTitle("Okay")
+        alert.show()
+        
+    }
+    
+
+    
     var data = []
     var detail = []
     var on = [""]
@@ -48,7 +60,32 @@ class GenreViewController: UIViewController {
     
     @IBAction func next(sender: AnyObject) {
         
+        var array = [""]
+        
+        var genres = ["action", "animation", "comedy", "crime", "romance", "scifi", "thriller"]
+        
+        var genswitch = [action, animation, comedy, crime, romance, scifi, thriller]
+        
+        
+        for (index, val) in genswitch.enumerate() {
+            
+            if val.on == true {
+                array.append(genres[index])
+                
+                
+            }
+        }
+        
+        if array.count > 1 {
+            displayAlert("Error", message: "Please select one genre only.")
+            
+        }
+        
+        else {
+        
         performSegueWithIdentifier("tocalc", sender: nil)
+            
+        }
     }
     
     @IBAction func skip(sender: AnyObject) {
@@ -64,6 +101,8 @@ class GenreViewController: UIViewController {
             
             var final = ""
             
+            var array = [""]
+            
             var genres = ["action", "animation", "comedy", "crime", "romance", "scifi", "thriller"]
             
             var genswitch = [action, animation, comedy, crime, romance, scifi, thriller]
@@ -72,9 +111,9 @@ class GenreViewController: UIViewController {
             for (index, val) in genswitch.enumerate() {
             
                 if val.on == true {
-                    
+                    array.append(genres[index])
                     final = genres[index]
-                    break
+                    
                 }
             }
 
