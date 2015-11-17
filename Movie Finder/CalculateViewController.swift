@@ -176,15 +176,20 @@ class CalculateViewController: UIViewController {
         
         var str = ""
         
-        print("Namaste")
-        
-       
+      
         
         for i in detail {
+            
+            print(i)
+            
+            if i as! String != "" {
+            
         
             str = str + (i as! String) + ","
             
             str.substringToIndex(str.endIndex.predecessor())
+                
+            }
         
         }
         
@@ -220,6 +225,8 @@ class CalculateViewController: UIViewController {
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         
+                        print(movieContent)
+                        
                         
                         var keywordArray = movieContent.componentsSeparatedByString("even detailed")
                         
@@ -231,14 +238,17 @@ class CalculateViewController: UIViewController {
                         self.urlOfImages = [" "]
                         self.urlOfImages.removeAtIndex(0)
                         
+                        
                         print(keywordArray.count)
                         print(keywordArray2.count)
+                        
+                        
                         
                         for (index, value) in keywordArray.enumerate() {
                             
                             print("Hello")
                             
-                            if index % 2 != 0 {
+                            if index != 0 {
                                 
                                 if index <= keywordArray.count {
                                     
@@ -259,6 +269,10 @@ class CalculateViewController: UIViewController {
                                     var imgAr = imgArr[1].componentsSeparatedByString("\" ")
                                     
                                     var iurl = imgAr[0] as String
+                                    
+                                    print(nameDone)
+                                    
+                                    print("THE FIRST FUNCTION IS BEING CALLED")
                                     
                                     self.listOfMovies.append(nameDone)
                                     
@@ -297,6 +311,10 @@ class CalculateViewController: UIViewController {
                                     var imgAr = imgArr[1].componentsSeparatedByString("\" ")
                                     
                                     var iurl = imgAr[0] as String
+                                    
+                                    print("THE SECOND FUNC IS BEING CALLED")
+                                        
+                                    print(nameDone2)
                                     
                                     self.listOfMovies.append(nameDone2)
                                     
