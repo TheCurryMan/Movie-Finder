@@ -62,6 +62,8 @@ class GenreViewController: UIViewController {
         
         var array = [""]
         
+        array.removeAtIndex(0)
+        
         var genres = ["action", "animation", "comedy", "crime", "romance", "scifi", "thriller"]
         
         var genswitch = [action, animation, comedy, crime, romance, scifi, thriller]
